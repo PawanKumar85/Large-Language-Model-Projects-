@@ -38,7 +38,7 @@ export default function Chatbot() {
     setIsTyping(true);
 
     try {
-      const response = await fetch("http://localhost:5000/chat", {
+      const response = await fetch("http://localhost:5001/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: input }),
@@ -101,7 +101,7 @@ export default function Chatbot() {
           {messages.length === 0 && (
             <div className="text-center py-10 text-gray-400 flex flex-col items-center">
               <div className="text-5xl mb-3">👋</div>
-              <p className="font-medium">Welcome to Gemini!</p>
+              <p className="font-medium">Welcome to Chat Bot!</p>
               <p className="text-sm mt-2">Ask me anything to get started...</p>
             </div>
           )}
@@ -144,6 +144,11 @@ export default function Chatbot() {
         <form onSubmit={sendMessage} className="p-3 bg-white border-t border-gray-200">
           <div className="flex items-center bg-gray-50 rounded-xl border border-gray-200 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
             <input
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="true"
+              spellCheck="false"
+              autoFocus={true}
               ref={inputRef}
               type="text"
               className="flex-1 p-3 bg-transparent focus:outline-none text-sm"
