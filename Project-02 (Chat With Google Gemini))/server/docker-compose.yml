@@ -1,0 +1,23 @@
+version: '3.8'
+
+networks:
+  chatbot_network: 
+    driver: bridge
+
+services:
+  chatbot:
+    container_name: chatbot_server
+    build: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env  
+    volumes:
+      - chatbot_data:/app/data
+      - .:/app 
+    networks:
+      - chatbot_network
+    restart: unless-stopped
+
+volumes:
+  chatbot_data:
