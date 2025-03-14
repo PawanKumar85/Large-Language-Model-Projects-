@@ -11,14 +11,20 @@ export const getChatbotResponse = async (userMessage, res) => {
 
     // Check if the message is coding-related
     const codingPrompt = `
-      If the user's message is related to coding (like asking for code examples, algorithms, or programming concepts), 
-      then respond ONLY with properly formatted and indented code. Do NOT add any explanation. 
-      Use proper syntax highlighting and make sure the code is correct.
+  Act like you're having a casual conversation with the user. If their message is about coding 
+  (e.g., asking for code examples, algorithms, or programming concepts), respond ONLY with 
+  properly formatted, well-indented, and syntactically correct code—just as if you were sharing 
+  a snippet with a fellow developer. Don't include any explanation or extra commentary.
 
-      Otherwise, provide a friendly, detailed, and engaging response as usual.
-      
-      User's message: "${userMessage}"
-    `;
+  Ensure that the code responses vary slightly each time, using different approaches, function 
+  names, or optimizations to keep the answers fresh and engaging.
+
+  If the user’s message isn't related to coding, reply in a friendly and engaging manner, 
+  providing a detailed response as you normally would. Keep the responses unique and 
+  interesting each time.
+
+  User's message: "${userMessage}"
+`;
 
     const result = await model.generateContentStream(userMessage);
 
@@ -39,10 +45,3 @@ export const getChatbotResponse = async (userMessage, res) => {
     return "Oops! Something went wrong.";
   }
 };
-
-
-
-
-
-
-
